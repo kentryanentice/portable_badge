@@ -1,0 +1,85 @@
+:root {
+	--font-family: 'Roboto', sans-serif;
+	--font-family-serif: 'Roboto Serif', serif;
+	--font-family-poppins: 'Poppins', sans-serif;
+	--font-family-montserrat: 'Montserrat', sans-serif;
+	--font-size-5: 5px;
+	--font-size-6: 6px;
+	--font-size-7: 7px;
+	--font-size-8: 8px;
+	--font-size-9: 9px;
+	--font-size-10: 10px;
+	--font-size-11: 11px;
+	--font-size-12: 12px;
+	--font-size-15: 15px;
+	--font-size-18: 18px;
+	--font-size-20: 20px;
+	--font-size-25: 25px;
+	--font-size-30: 30px;
+	--font-size-35: 35px;
+	--font-size-40: 40px;
+	--font-size-45: 45px;
+	--font-size-50: 50px;
+	--font-size-55: 55px;
+	--font-size-60: 60px;
+	--font-size-65: 65px;
+	--font-size-70: 70px;
+	--font-size-75: 75px;
+	--font-size-80: 80px;
+	--font-size-85: 85px;
+	--font-size-90: 90px;
+	--font-size-95: 95px;
+	--font-size-100: 100px;
+	--font-weight-100: 100;
+	--font-weight-200: 200;
+	--font-weight-300: 300;
+	--font-weight-400: 400;
+	--font-weight-500: 500;
+	--font-weight-600: 600;
+	--font-weight-700: 700;
+	--font-weight-800: 800;
+	--font-weight-900: 900;
+
+	--color-bg: #ebf7fd;
+	--color-text: #021024;
+
+	--color-accent-100: #edf4fc;
+	--color-accent-200: #dbe9f9;
+	--color-accent-300: #c9def6;
+	--color-accent-400: #b7d3f3;
+	--color-accent-500: #a5c8f1;
+	--color-accent-600: #92bcee;
+	--color-accent-700: #80b1eb;
+	--color-accent-800: #6ea6e8;
+	--color-accent-900: #5c9be5;
+	--color-accent-1000: #4a90e2;
+	--color-accent: var(--color-accent-1000);
+	--color-highlight: #15803d;
+	--color-success: #10b981;
+	--color-danger: #ef4444;
+	--text-shadow-light: 0px 2px 4px rgba(0,0,0,0.3);
+	--box-shadow-light: 0px 2px 4px rgba(0,0,0,0.2);
+    --transition: all .3s ease-in-out;
+	--animation: all .3s ease-in-out forwards;
+	
+}
+
+[data-theme='dark'] {
+	--color-bg: #021024;
+	--color-text: #ebf7fd;
+
+	--color-accent-100: #edfcf2;
+	--color-accent-200: #daf8e6;
+	--color-accent-300: #c9f5d9;
+	--color-accent-400: #b7f2cc;
+	--color-accent-500: #a5efbf;
+	--color-accent-600: #92ebb3;
+	--color-accent-700: #80e8a6;
+	--color-accent-800: #6ee599;
+	--color-accent-900: #5ce18c;
+	--color-accent-1000: #4ade80;
+	--color-accent: var(--color-accent-1000);
+	--color-highlight: #bef264;
+	--text-shadow-light: 0px 2px 6px rgba(255,255,255,0.15);
+	--box-shadow-light: 0px 1px 1px rgba(255,255,255,0.15);
+}

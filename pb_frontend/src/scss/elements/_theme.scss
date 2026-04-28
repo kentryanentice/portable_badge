@@ -1,0 +1,66 @@
+@use '../core/globals';
+@use '../core/styles';
+
+// ─── Global Header ────────────────────────────────────────────────────────────
+
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 32px;
+    border-bottom: 1px solid rgba(2, 16, 36, 0.08);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+
+    [data-theme='dark'] & {
+        border-color: rgba(235, 247, 253, 0.08);
+    }
+
+    &__brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: var(--font-size-18);
+        font-weight: var(--font-weight-500);
+        color: var(--color-text);
+        text-decoration: none;
+        transition: var(--transition);
+
+        img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        svg {
+            color: var(--color-accent);
+        }
+    }
+}
+
+// ─── Theme Toggle ─────────────────────────────────────────────────────────────
+
+.theme-icon {
+
+    i {
+        position: relative;
+        color: var(--color-text);
+        font-size: var(--font-size-25);
+        font-weight: var(--font-weight-300);
+        cursor: pointer;
+        transition: var(--transition);
+
+        @include styles.respond-to(tablet) {
+            font-size: var(--font-size-30);
+        }
+    }
+
+    i:hover {
+        filter: drop-shadow(0px 0px .05px var(--color-text));
+        transition: var(--transition);
+    }
+}

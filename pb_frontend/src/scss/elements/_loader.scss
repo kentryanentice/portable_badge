@@ -1,0 +1,12 @@
+@use '../core/globals';
+@use '../core/styles';
+@use '../core/breakpoints';
+
+.loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background: var(--color-bg);
+	transition: background var(--duration-slow) var(--ease-default);
+}

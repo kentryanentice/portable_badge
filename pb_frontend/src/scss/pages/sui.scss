@@ -1,0 +1,594 @@
+@use '../core/globals';
+@use '../core/styles';
+@use '../core/breakpoints';
+
+// ─── Dashboard shell ─────────────────────────────────────────────────────────
+
+.sui-dashboard {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 48px;
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+
+.sui-header {
+    width: 100%;
+    max-width: 780px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 16px 0;
+    gap: 12px;
+
+    &__brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: var(--font-size-18);
+        font-weight: var(--font-weight-400);
+        color: var(--color-accent);
+
+        i {
+            font-size: 24px;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+}
+
+.sui-addr {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-size-12);
+    font-family: 'Roboto Mono', monospace;
+    opacity: 0.65;
+
+    i {
+        font-size: 15px;
+    }
+}
+
+// ─── Tabs ─────────────────────────────────────────────────────────────────────
+
+.sui-tabs {
+    display: flex;
+    gap: 4px;
+    margin-top: 28px;
+    padding: 4px;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 12px;
+    width: min(780px, calc(100% - 32px));
+
+    [data-theme='dark'] & {
+        background: rgba(255, 255, 255, 0.06);
+    }
+}
+
+.sui-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 9px;
+    font-size: var(--font-size-15);
+    font-weight: var(--font-weight-400);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: var(--transition);
+    opacity: 0.6;
+
+    i {
+        font-size: 17px;
+    }
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &--active {
+        background: var(--color-bg);
+        opacity: 1;
+        font-weight: var(--font-weight-400);
+        color: var(--color-accent);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+
+        [data-theme='dark'] & {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+        }
+    }
+}
+
+// ─── Content area ─────────────────────────────────────────────────────────────
+
+.sui-content {
+    width: min(780px, calc(100% - 32px));
+    margin-top: 24px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 32px rgba(2, 16, 36, 0.07);
+
+    [data-theme='dark'] & {
+        background: rgba(235, 247, 253, 0.04);
+        box-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
+    }
+}
+
+// ─── Form ─────────────────────────────────────────────────────────────────────
+
+.sui-form {
+    @include styles.flex-center;
+    gap: 14px;
+    width: 100%;
+}
+
+.sui-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--color-bg);
+    border: 1px solid rgba(2, 16, 36, 0.12);
+    border-radius: 10px;
+    cursor: text;
+    transition: var(--transition);
+
+    [data-theme='dark'] & {
+        border-color: rgba(235, 247, 253, 0.12);
+    }
+
+    &:focus-within {
+        border-color: var(--color-accent);
+        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+
+        [data-theme='dark'] & {
+            box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.15);
+        }
+    }
+
+    i {
+        font-size: var(--font-size-20);
+        color: var(--color-accent);
+        flex-shrink: 0;
+    }
+
+    input,
+    textarea {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: var(--font-size-15);
+        color: var(--color-text);
+        resize: none;
+        user-select: text;
+
+        &::placeholder {
+            color: var(--color-text);
+            opacity: 0.4;
+        }
+    }
+
+    &--textarea {
+        align-items: flex-start;
+
+        i {
+            margin-top: 2px;
+        }
+    }
+
+    &--inline {
+        flex: 1;
+    }
+}
+
+// ─── Button ───────────────────────────────────────────────────────────────────
+
+.sui-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    margin-top: 4px;
+    background: var(--color-accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: var(--font-size-15);
+    font-weight: var(--font-weight-400);
+    cursor: pointer;
+    transition: var(--transition);
+
+    &:hover:not(:disabled) {
+        opacity: 0.85;
+        transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &--sm {
+        width: auto;
+        padding: 10px 18px;
+        white-space: nowrap;
+        border-radius: 10px;
+    }
+}
+
+// ─── Badges ───────────────────────────────────────────────────────────────────
+
+.sui-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: var(--font-size-11);
+    font-weight: var(--font-weight-400);
+    background: rgba(74, 144, 226, 0.15);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+
+    &--count {
+        background: var(--color-accent);
+        color: #fff;
+        padding: 1px 6px;
+        margin-left: 6px;
+    }
+}
+
+// ─── Success banner ───────────────────────────────────────────────────────────
+
+.sui-success-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: min(780px, calc(100% - 32px));
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 10px;
+    font-size: var(--font-size-15);
+    color: var(--color-success);
+
+    i {
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    span {
+        flex: 1;
+    }
+
+    code {
+        font-family: 'Roboto Mono', monospace;
+        font-size: var(--font-size-12);
+    }
+}
+
+.sui-success-close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-success);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    opacity: 0.7;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+.sui-error {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    font-size: var(--font-size-12);
+    color: var(--color-danger);
+}
+
+.sui-hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+    font-size: var(--font-size-12);
+    color: var(--color-text);
+    opacity: 0.55;
+    line-height: 1.5;
+
+    i {
+        flex-shrink: 0;
+        font-size: 14px;
+        margin-top: 1px;
+    }
+
+    code {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 11px;
+        opacity: 0.85;
+    }
+
+    &--center {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+.sui-loading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--font-size-15);
+    opacity: 0.6;
+}
+
+.sui-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(2, 16, 36, 0.08);
+    margin: 24px 0;
+
+    [data-theme='dark'] & {
+        background: rgba(235, 247, 253, 0.08);
+    }
+}
+
+.sui-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--font-size-12);
+    font-family: 'Roboto Mono', monospace;
+    color: var(--color-accent);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    i {
+        font-size: 13px;
+    }
+}
+
+// ─── View Account ─────────────────────────────────────────────────────────────
+
+.sui-view {
+    @include styles.flex-center;
+    gap: 0;
+    width: 100%;
+}
+
+.sui-lookup {
+    width: 100%;
+}
+
+.sui-owned {
+    width: 100%;
+}
+
+.sui-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--font-size-15);
+    font-weight: var(--font-weight-400);
+    margin-bottom: 14px;
+
+    i {
+        font-size: 18px;
+        color: var(--color-accent);
+    }
+}
+
+.sui-lookup-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.account-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px;
+    background: var(--color-bg);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(2, 16, 36, 0.07);
+
+    [data-theme='dark'] & {
+        border-color: rgba(235, 247, 253, 0.07);
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    &__avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--color-accent);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-18);
+        font-weight: var(--font-weight-400);
+        flex-shrink: 0;
+    }
+
+    &__username {
+        font-size: var(--font-size-15);
+        font-weight: var(--font-weight-400);
+    }
+
+    &__email {
+        font-size: var(--font-size-12);
+        opacity: 0.6;
+    }
+
+    &__bio {
+        font-size: var(--font-size-12);
+        opacity: 0.75;
+        line-height: 1.5;
+    }
+
+    &__meta {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    &__epoch {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: var(--font-size-12);
+        opacity: 0.5;
+
+        i {
+            font-size: 13px;
+        }
+    }
+}
+
+// ─── Transaction log ──────────────────────────────────────────────────────────
+
+.sui-txlog {
+    width: 100%;
+
+    &--empty {
+        @include styles.flex-center;
+        gap: 12px;
+        padding: 32px 0;
+        opacity: 0.5;
+        text-align: center;
+        font-size: var(--font-size-15);
+    }
+}
+
+.txlog-table {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.txlog-header {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 2fr 1fr;
+    gap: 12px;
+    padding: 8px 12px;
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-400);
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.txlog-row {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 2fr 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--color-bg);
+    border-radius: 10px;
+    font-size: var(--font-size-12);
+    border: 1px solid rgba(2, 16, 36, 0.06);
+
+    [data-theme='dark'] & {
+        border-color: rgba(235, 247, 253, 0.06);
+    }
+}
+
+.txlog-username {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: var(--font-weight-400);
+}
+
+.txlog-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-400);
+    flex-shrink: 0;
+}
+
+.txlog-digest,
+.txlog-object {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.txlog-time {
+    opacity: 0.5;
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+
+@include styles.respond-to(phone) {
+    .sui-header {
+        flex-wrap: wrap;
+    }
+
+    .sui-content {
+        padding: 20px 16px;
+    }
+
+    .txlog-header,
+    .txlog-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .txlog-object,
+    .txlog-time {
+        display: none;
+    }
+}
